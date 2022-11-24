@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Install Dependencies
-        run: sudo apt-get update && apt-get install -y cmake g++ libgtest-dev libpthread-stubs0-dev
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libgtest-dev libpthread-stubs0-dev
       - name: Build library and tests
         run: bash build.sh -c -g -b
       - name: Archive Build results
