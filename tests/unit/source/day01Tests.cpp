@@ -24,4 +24,3 @@ TEST(Day01Test, InvalidDirection)
     ASSERT_EQ(-1, Day01::Step(0, charInvalid));
     ASSERT_EQ(-1, Day01::Step(-1, charInvalid));
 }
- 
