@@ -27,6 +27,11 @@ jobs:
   test:
     needs: build
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/zotlann/build_gtest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.ghcr_token }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
