@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake g++ libgtest-dev libpthread-stubs0-dev
+      - name: Build library and tests
+        run: bash build.sh -c -g -b
+      - name: Archive Build results
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: output
+          retention-days: 1
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+          path: output
+      - name: Run Tests
+        run: bash test.sh -u -i
