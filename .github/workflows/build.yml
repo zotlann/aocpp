@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: build_gtest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Build the library and tests
+        run: bash build.sh -c -g -b
+      - name: Archive Build results
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: output
+          retention-days: 1
