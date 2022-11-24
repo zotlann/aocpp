@@ -4,15 +4,26 @@ run_unit()
 {
     TEST_EXE="${EXEC_BASE}Unit"
     pushd "${BIN_DIR}" || exit 1
+    mkdir data
+    cp  ../../tests/data/*.txt ./data || exit 1
     chmod +x "$TEST_EXE"
-    ./"${EXEC_BASE}Unit"
+    ./"$TEST_EXE"
     RESULT=$(($RESULT + $?))
+    rm -rf data
     popd
 }
 
 run_integration()
 {
-    RESULT=$(($RESULT + 0))
+    TEST_EXE="${EXEC_BASE}Integration"
+    pushd "${BIN_DIR}" || exit 1
+    mkdir data
+    cp  ../../tests/data/*.txt ./data || exit 1
+    chmod +x "$TEST_EXE"
+    ./"$TEST_EXE"
+    RESULT=$(($RESULT + $?))
+    rm -rf data
+    popd
 }
 
 parseArgs()
