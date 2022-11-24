@@ -7,11 +7,12 @@ on:
 
 jobs:
   build:
-    runs-on: build_gtest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Build the library and tests
+        run: apt-get update && apt-get install -y cmake g++ libgtest-dev libpthread-stubs0-dev
         run: bash build.sh -c -g -b
       - name: Archive Build results
         uses: actions/upload-artifact@v3
