@@ -21,3 +21,15 @@ jobs:
           name: build-artifacts
           path: output
           retention-days: 1
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+          path: output
+      - name: Run Tests
+        run: bash test.sh -u
