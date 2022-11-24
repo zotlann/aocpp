@@ -22,6 +22,7 @@ jobs:
           path: output
           retention-days: 1
   test:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

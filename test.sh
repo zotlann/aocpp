@@ -2,7 +2,9 @@
 
 run_unit()
 {
+    TEST_EXE="${EXEC_BASE}Unit"
     pushd "${BIN_DIR}" || exit 1
+    chmod +x "$TEST_EXE"
     ./"${EXEC_BASE}Unit"
     RESULT=$(($RESULT + $?))
     popd
