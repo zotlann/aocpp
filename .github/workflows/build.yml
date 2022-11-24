@@ -33,4 +33,4 @@ jobs:
           name: build-artifacts
           path: output
       - name: Run Tests
-        run: bash test.sh -u
+        run: bash test.sh -u -i
